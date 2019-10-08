@@ -1,6 +1,7 @@
 ﻿using System;
 using AppKit;
 using Foundation;
+using System.IO;
 
 namespace DyeListGeneratorUI
 {
@@ -36,9 +37,30 @@ namespace DyeListGeneratorUI
             openPanel.CanChooseFiles = true;
 
             long userInput = openPanel.RunModal();
-            if(userInput == (long)NSModalResponse.OK)
+            if (userInput == (long)NSModalResponse.OK)
             {
-                var file = openPanel.Filenames[0];
+                String fileName = openPanel.Filenames[0];
+                var file = new FileInfo(fileName);
+
+                CustomerOrdersFileNameLabel.StringValue = file.Name;
+            }
+        }
+
+        partial void MasterDyeListFilePickerButtonClicked(Foundation.NSObject sender)
+        {
+            NSOpenPanel openPanel = new NSOpenPanel();
+            openPanel.AllowsMultipleSelection = false;
+            openPanel.CanChooseDirectories = false;
+            openPanel.CanCreateDirectories = false;
+            openPanel.CanChooseFiles = true;
+
+            long userInput = openPanel.RunModal();
+            if (userInput == (long)NSModalResponse.OK)
+            {
+                String fileName = openPanel.Filenames[0];
+                var file = new FileInfo(fileName);
+
+                MasterDyeListFileNameLabel.StringValue = file.Name;
             }
         }
     }

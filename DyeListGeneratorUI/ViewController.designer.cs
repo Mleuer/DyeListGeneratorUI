@@ -12,6 +12,12 @@ namespace DyeListGeneratorUI
 	[Register ("ViewController")]
 	partial class ViewController
 	{
+		[Outlet]
+		AppKit.NSTextField CustomerOrdersFileNameLabel { get; set; }
+
+		[Outlet]
+		AppKit.NSTextField MasterDyeListFileNameLabel { get; set; }
+
 		[Action ("CustomerOrdersFilePickerButtonClicked:")]
 		partial void CustomerOrdersFilePickerButtonClicked (Foundation.NSObject sender);
 
@@ -23,6 +29,15 @@ namespace DyeListGeneratorUI
 		
 		void ReleaseDesignerOutlets ()
 		{
+			if (CustomerOrdersFileNameLabel != null) {
+				CustomerOrdersFileNameLabel.Dispose ();
+				CustomerOrdersFileNameLabel = null;
+			}
+
+			if (MasterDyeListFileNameLabel != null) {
+				MasterDyeListFileNameLabel.Dispose ();
+				MasterDyeListFileNameLabel = null;
+			}
 		}
 	}
 }
