@@ -10,6 +10,8 @@ namespace DyeListGeneratorUI
         public FileInfo CustomerOrdersFile { private set; get; } = null;
         public FileInfo MasterDyeListFile { private set; get; } = null;
 
+        public DirectoryInfo SaveLocation { private set; get; } = null;
+
         public ViewController(IntPtr handle) : base(handle)
         {
         }
@@ -67,16 +69,34 @@ namespace DyeListGeneratorUI
             }
         }
 
+        partial void SaveLocationButtonClicked(Foundation.NSObject sender)
+        {
+            NSOpenPanel openPanel = new NSOpenPanel();
+            openPanel.AllowsMultipleSelection = false;
+            openPanel.CanChooseDirectories = true;
+            openPanel.CanCreateDirectories = false;
+            openPanel.CanChooseFiles = false;
+
+            long userInput = openPanel.RunModal();
+            if (userInput == (long)NSModalResponse.OK)
+            {
+                String fileName = openPanel.Filenames[0];
+                SaveLocation = new DirectoryInfo(fileName);
+
+                SaveLocationLabel.StringValue = SaveLocation.Name;
+            }
+        }
+
         partial void GenerateDyeListButtonClicked(Foundation.NSObject sender)
         {
-            if (CustomerOrdersFile != null && MasterDyeListFile != null)
+            if (CustomerOrdersFile != null && MasterDyeListFile != null && SaveLocation != null)
             {
-                DyeListGenerator.DyeListGenerator.GenerateDyeList(new FileStream(CustomerOrdersFile.FullName, FileMode.Open), new FileStream(MasterDyeListFile.FullName, FileMode.Open));
+                DyeListGenerator.DyeListGenerator.GenerateDyeList(new FileStream(CustomerOrdersFile.FullName, FileMode.Open), new FileStream(MasterDyeListFile.FullName, FileMode.Open), SaveLocation);
+                ProgramStatusLabel.StringValue = "Dye List Generated";
             }
             else
             {
                 ProgramStatusLabel.StringValue = "Error! Missing File";
-                //ProgramStatusLabel.TextColor;
             }
         }
     }
