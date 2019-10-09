@@ -18,6 +18,9 @@ namespace DyeListGeneratorUI
 		[Outlet]
 		AppKit.NSTextField MasterDyeListFileNameLabel { get; set; }
 
+		[Outlet]
+		AppKit.NSTextField ProgramStatusLabel { get; set; }
+
 		[Action ("CustomerOrdersFilePickerButtonClicked:")]
 		partial void CustomerOrdersFilePickerButtonClicked (Foundation.NSObject sender);
 
@@ -37,6 +40,11 @@ namespace DyeListGeneratorUI
 			if (MasterDyeListFileNameLabel != null) {
 				MasterDyeListFileNameLabel.Dispose ();
 				MasterDyeListFileNameLabel = null;
+			}
+
+			if (ProgramStatusLabel != null) {
+				ProgramStatusLabel.Dispose ();
+				ProgramStatusLabel = null;
 			}
 		}
 	}

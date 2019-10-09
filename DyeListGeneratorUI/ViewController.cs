@@ -7,6 +7,9 @@ namespace DyeListGeneratorUI
 {
     public partial class ViewController : NSViewController
     {
+        public FileInfo CustomerOrdersFile { private set; get; } = null;
+        public FileInfo MasterDyeListFile { private set; get; } = null;
+
         public ViewController(IntPtr handle) : base(handle)
         {
         }
@@ -40,9 +43,9 @@ namespace DyeListGeneratorUI
             if (userInput == (long)NSModalResponse.OK)
             {
                 String fileName = openPanel.Filenames[0];
-                var file = new FileInfo(fileName);
+                CustomerOrdersFile = new FileInfo(fileName);
 
-                CustomerOrdersFileNameLabel.StringValue = file.Name;
+                CustomerOrdersFileNameLabel.StringValue = CustomerOrdersFile.Name;
             }
         }
 
@@ -58,9 +61,22 @@ namespace DyeListGeneratorUI
             if (userInput == (long)NSModalResponse.OK)
             {
                 String fileName = openPanel.Filenames[0];
-                var file = new FileInfo(fileName);
+                MasterDyeListFile = new FileInfo(fileName);
 
-                MasterDyeListFileNameLabel.StringValue = file.Name;
+                MasterDyeListFileNameLabel.StringValue = MasterDyeListFile.Name;
+            }
+        }
+
+        partial void GenerateDyeListButtonClicked(Foundation.NSObject sender)
+        {
+            if (CustomerOrdersFile != null && MasterDyeListFile != null)
+            {
+                DyeListGenerator.DyeListGenerator.GenerateDyeList(new FileStream(CustomerOrdersFile.FullName, FileMode.Open), new FileStream(MasterDyeListFile.FullName, FileMode.Open));
+            }
+            else
+            {
+                ProgramStatusLabel.StringValue = "Error! Missing File";
+                //ProgramStatusLabel.TextColor;
             }
         }
     }
