@@ -33,11 +33,17 @@ namespace DyeListGenerator
                 case "SL":
                     return YarnType.Mohair;
                 case "B2":
-                    return YarnType.BFL2Ply;
+                    return YarnType.Butterfly;
                 case "BSK":
                     return YarnType.BFLSock;
                 case "BDK":
-                    return YarnType.BFLDK;
+                    return YarnType.Juliette;
+                case "VR":
+                    return YarnType.Riley;
+                case "SZ":
+                    return YarnType.Suzette;
+                case "SV":
+                    return YarnType.Savvy;
                 default:
                     throw new ArgumentException("Yarn Type Does Not Exist");
             }

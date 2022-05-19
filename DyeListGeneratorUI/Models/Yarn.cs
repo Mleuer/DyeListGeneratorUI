@@ -153,14 +153,23 @@ namespace DyeListGenerator
         [YarnTypeProperties(1, MiniMohair)]
         Mohair,
         
-        [YarnTypeProperties(4, MiniBFL2Ply, "BFL 2 Ply")] 
-        BFL2Ply,
+        [YarnTypeProperties(4, MiniButterfly, "Butterfly")] 
+        Butterfly,
         
         [YarnTypeProperties(4, MiniBFLSock, "BFL Sock")] 
         BFLSock,
         
-        [YarnTypeProperties(4, MiniBFLDK, "BFL Dk")] 
-        BFLDK,
+        [YarnTypeProperties(4, MiniJuliette, "Juliette")] 
+        Juliette,
+        
+        [YarnTypeProperties(4, MiniRiley, "Riley")] 
+        Riley,
+        
+        [YarnTypeProperties(4, MiniSuzette, "Suzette")] 
+        Suzette,
+        
+        [YarnTypeProperties(4, MiniSavvy, "Savvy")] 
+        Savvy,
         
         [YarnTypeProperties(1, MiniClassy, "Mini Classy")]
         MiniClassy,
@@ -192,13 +201,22 @@ namespace DyeListGenerator
         [YarnTypeProperties(1, MiniMohair, "Mini Mohair")]
         MiniMohair,
         
-        [YarnTypeProperties(1, MiniBFL2Ply, "Mini BFL 2 Ply")]
-        MiniBFL2Ply,
+        [YarnTypeProperties(1, MiniButterfly, "Mini Butterfly")]
+        MiniButterfly,
         
         [YarnTypeProperties(1, MiniBFLSock, "Mini BFL Sock")]
         MiniBFLSock,
         
-        [YarnTypeProperties(1, MiniBFLDK, "Mini BFL DK")]
-        MiniBFLDK
+        [YarnTypeProperties(1, MiniJuliette, "Mini Juliette")]
+        MiniJuliette,
+        
+        [YarnTypeProperties(1, MiniRiley, "Mini Riley")]
+        MiniRiley,
+        
+        [YarnTypeProperties(1, MiniSuzette, "Mini Suzette")]
+        MiniSuzette,
+        
+        [YarnTypeProperties(1, MiniSavvy, "Mini Savvy")]
+        MiniSavvy
     }
 }
